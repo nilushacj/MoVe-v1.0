@@ -1,0 +1,27 @@
+ckpt: {path: null, strict: true}
+model:
+  batch_size: 2
+  freeze_bn: false
+  ids: {enabled: true, sensor_size_divisor: 32}
+  loss2d:
+    level_weights: [8, 4, 2, 1, 0.5]
+    order: l1
+  loss3d:
+    level_weights: [8, 4, 2, 1, 0.5]
+    order: l1
+  pwc2d:
+    max_displacement: 4
+    norm: {context_network: null, feature_pyramid: batch_norm, flow_estimator: null}
+  pwc3d:
+    k: 16
+    norm: {correlation: null, feature_pyramid: batch_norm, flow_estimator: null}
+testset:
+  augmentation: {enabled: false}
+  disp_provider: ganet
+  max_depth: 30
+  n_points: 8192
+  n_workers: 6
+  name: kitti
+  root_dir: 
+    /scratch/work/jayawin1/article_3/camli_test/CamLiFlow/datasets/kitti_scene_flow_0010
+  split: testing200

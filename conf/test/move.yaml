@@ -1,0 +1,35 @@
+ego_car:
+  min_move_spd: 10.0
+  max_steer_turn: 0.2
+  max_stationary_spd: 5.0
+  depth_cloud_img: 30
+pt_cloud_masks:
+  kern_dilate: 3
+  kern_blur: 15
+  min_region_inc_ratio: 0.5
+  kern_bb_up: 25
+channel_shift:
+  m: 1.4746504246224565
+  y_cept: 0.004966540528861941
+pooler:
+  kern: 25
+  stride: 3
+flow_tol:
+  spd: 20
+  flow: 0.25
+adaptive_thresh:
+  block: 11
+  c: 2
+emp_filts:
+  corn_scale: 10
+  scale_f: 3.0
+  region_tol: 0.75
+track_match: 0.70
+grabcut:
+  bg_tol: 0.1
+  scale_f: 3.0
+  scale_f_p: 1.25
+seg_fusion:
+  thresh_fusion: 0.2
+  thresh_region: 4000
+  thresh_overlap: 0.40

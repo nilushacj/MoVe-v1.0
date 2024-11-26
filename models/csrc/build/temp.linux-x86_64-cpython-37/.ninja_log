@@ -1,0 +1,8 @@
+# ninja log v5
+2	2600	1675252250000000000	/scratch/work/jayawin1/camli_test/CamLiFlow/models/csrc/build/temp.linux-x86_64-cpython-37/correlation/correlation_backward_kernel.o	98ce066e14f27443
+2603	4914	1675252252000000000	/scratch/work/jayawin1/camli_test/CamLiFlow/models/csrc/build/temp.linux-x86_64-cpython-37/correlation/correlation_forward_kernel.o	c0c7a050c63b98b3
+2	42241	1675252290000000000	/scratch/work/jayawin1/camli_test/CamLiFlow/models/csrc/build/temp.linux-x86_64-cpython-37/correlation/correlation.o	c4ba6e113eea9927
+3	2364	1675252293000000000	/scratch/work/jayawin1/camli_test/CamLiFlow/models/csrc/build/temp.linux-x86_64-cpython-37/furthest_point_sampling/furthest_point_sampling_kernel.o	fe2b573abda0dac0
+3	40259	1675252331000000000	/scratch/work/jayawin1/camli_test/CamLiFlow/models/csrc/build/temp.linux-x86_64-cpython-37/furthest_point_sampling/furthest_point_sampling.o	99eab22717c80973
+3	2405	1675252334000000000	/scratch/work/jayawin1/camli_test/CamLiFlow/models/csrc/build/temp.linux-x86_64-cpython-37/k_nearest_neighbor/k_nearest_neighbor_kernel.o	f57731fc631e536d
+3	40283	1675252372000000000	/scratch/work/jayawin1/camli_test/CamLiFlow/models/csrc/build/temp.linux-x86_64-cpython-37/k_nearest_neighbor/k_nearest_neighbor.o	f5787784cfc0dbff
