@@ -53,7 +53,9 @@ Upon execution, the following outputs would be generated:
     - labelled instances corresponding to predictions of moving vehicles
     - predicted instance segmentations of moving vehicles
     - corresponding scene-flows of pixels associated with moving vehicles (-1 values for the stationary regions)  
-- .txt file of all predictions (**results_annots/our_results_xxxx.txt**), in which each the values are space separated. Each row corresponds to a single detection represented with 18 columns (left to right):
+- .txt file of all predictions (`results_annots/our_results_xxxx.txt`), in which each value is space-separated.  
+Each row corresponds to a single detection represented with 18 columns (left to right):
+
 | Values | Name        | Description                                                                                           |
 |--------|-------------|-------------------------------------------------------------------------------------------------------|
 | 1      | frame       | Frame ID (divide by two to get the corresponding image result, e.g., 4 = 000002_10.png).              |
@@ -67,6 +69,7 @@ Upon execution, the following outputs would be generated:
 | 1      | bounds      | "Inside" denotes within the neighbourhood mask, "Outside" denotes outside the neighbourhood mask.    |
 | 1      | status      | Driving scenario, which is one of the following (refer to the paper for details): 'Regular', 'Turning', or 'Stopped'. |
 | 1      | prediction  | Motion prediction result (from MoVe): 's' = not moving, 'm' = moving.                                |
+
 
 
 ## References 
