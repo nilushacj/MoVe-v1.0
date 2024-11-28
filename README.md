@@ -59,14 +59,14 @@ Each row corresponds to a single detection represented with 18 columns (left to 
 | Values | Name        | Description                                                                                           |
 |--------|-------------|-------------------------------------------------------------------------------------------------------|
 | 1      | frame       | Frame ID (divide by two to get the corresponding image result, e.g., 4 = 000002_10.png).              |
-| 1      | type        | Describes the type of vehicle: 'Car', 'Van', 'Truck', 'Tram'.                                         |
+| 1      | type        | Describes the type of vehicle: 'Car', 'Van', 'Truck' 'Tram', 'Tram'.                                         |
 | 4      | bbox        | 2D bounding box of the object in the image: contains left, top, right, and bottom pixel coordinates.  |
 | 1      | occlusion   | Integer indicating occlusion state: 0 = fully visible, 1 = partly occluded, 2 = largely occluded, 3 = unknown. |
 | 1      | truncation  | Integer indicating how much the object has left image boundaries: 0 = fully visible, 1 = partly truncated, 2 = largely truncated. |
 | 1      | track       | Unique track ID for the object.                                                                      |
 | 3      | dimensions  | 3D object dimensions: height, width, and length (in meters).                                         |
 | 3      | location    | 3D object location x, y, z in camera coordinates (in meters).                                        |
-| 1      | bounds      | "Inside" denotes within the neighbourhood mask, "Outside" denotes outside the neighbourhood mask.    |
+| 1      | bounds      | 'Inside' denotes within the neighbourhood mask, 'Outside' denotes outside the neighbourhood mask.    |
 | 1      | status      | Driving scenario, which is one of the following (refer to the paper for details): 'Regular', 'Turning', or 'Stopped'. |
 | 1      | prediction  | Motion prediction result (from MoVe): 's' = not moving, 'm' = moving.                                |
 
