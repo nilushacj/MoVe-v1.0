@@ -28,6 +28,8 @@ import shutil
 from sklearn.mixture import GaussianMixture
 import geopy.distance
 
+# ***************************** START: HELPER FUNCTIONS/WRAPPERS ***************************** 
+
 def get_rigid_transformation(calib_path):
     ''' Returns a rigid transformation matrix in homogeneous coordinates (combination of
         rotation and translation.
@@ -761,6 +763,8 @@ def viz_predictions(to_mask, img_rgb, mask_to_add):
         final_viz = img_rgb.copy()
     return final_viz
 
+# ***************************** END: HELPER FUNCTIONS/WRAPPERS ***************************** 
+
 class Evaluator:
     def __init__(self, device: torch.device, cfgs:DictConfig):
         self.cfgs = cfgs
@@ -771,7 +775,7 @@ class Evaluator:
 
         # -- Define test dataset path --
         ds_current = str(self.cfgs.testset.root_dir)[-4:]
-        ds_sum_path = f'/scratch/work/jayawin1/article_3/camli_test/CamLiFlow/datasets/kitti_scene_flow_{ds_current}/testing/bbox_labels' #YOUR CODE: change path to your dataset location
+        ds_sum_path = f'$PATH_TO_DATASETS_DIRECTORY/datasets/kitti_scene_flow_{ds_current}/testing/bbox_labels' #YOUR CODE: change path to your dataset annotations location
         ds_sum_txts = glob.glob(os.path.join(ds_sum_path, '*.txt'))
         ds_sum = (len(ds_sum_txts))
         self.test_dataset = KITTITest(self.cfgs.testset, ds_sum)
@@ -818,9 +822,11 @@ class Evaluator:
         os.makedirs('%s/temp_fusion_roi' % out_dir, exist_ok=True) #temp folder
         os.makedirs('%s/motion_predictions' % out_dir, exist_ok=True)
         os.makedirs('%s/fused_segmentations' % out_dir, exist_ok=True)
+        os.makedirs('%s/motion_flow_matrices' % out_dir, exist_ok=True)
+
 
         # -- Define log file config (replace with a new one for each run) --
-        log_out_txt = f'/scratch/work/jayawin1/article_3/MoVe/output_logs/log_ds_{args.ds}.txt' 
+        log_out_txt = f'$PATH_TO_LOG_FILE/output_logs/log_ds_{args.ds}.txt' #YOUR CODE: Give absolute path to log file
         if os.path.exists(log_out_txt):
             os.remove(log_out_txt)
         new_log = open(log_out_txt, 'w')
@@ -913,7 +919,7 @@ class Evaluator:
                         
                         # -- Filtering Step 2: Transform LiDAR point cloud to left camera frame --
                         # -- Read calibration files --
-                        data_dir_calib = f'/scratch/work/jayawin1/article_3/kitti_data/BBOX_tracking/calib_ds/training/{args.ds}' #YOUR CODE: Update path
+                        data_dir_calib = f'$PATH_TO_CALIBRATION_FILES/calib_ds/training/{args.ds}' #YOUR CODE: update path
                         calib_imu_velo = os.path.join(data_dir_calib, 'calib_imu_to_velo.txt')
                         calib_velo_cam = os.path.join(data_dir_calib, 'calib_velo_to_cam.txt')
                         calib_cam_cam  = os.path.join(data_dir_calib, 'calib_cam_to_cam.txt')
@@ -1977,11 +1983,11 @@ class Evaluator:
 
                         # ***************************** START: FUSION MODEL - YOLO + GRABCUT FOR SEGMENTATION OPTIMIZING ***************************** 
                         # -- Set paths --
-                        weights_path = '/scratch/work/jayawin1/article_3/MoVe/yolo_weights/yolov7-seg.pt' #YOUR CODE: Give absolute path
-                        yolo_inf_path = '/scratch/work/jayawin1/article_3/MoVe/segment/predict.py' #YOUR CODE: Give absolute path
+                        weights_path = '$PATH_TO_YOLO_WEIGHTS/yolo_weights/yolov7-seg.pt'      #YOUR CODE: Give absolute path
+                        yolo_inf_path = '$PATH_TO_YOLO_SEGMENTATION_SCRIPT/segment/predict.py' #YOUR CODE: Give absolute path
                         roi_dir = '%s/temp_RGB_roi/%06d_10' % (out_dir, test_id)
                         yolo_roi_dir = '%s/temp_YOLO_roi/%06d_10' % (out_dir, test_id)
-                        yolo_pred_dir = '/scratch/work/jayawin1/article_3/MoVe/runs/predict-seg' #YOUR CODE: Give absolute path
+                        yolo_pred_dir = '$PATH_TO_YOLO_RUNS/runs/predict-seg'                  #YOUR CODE: Give absolute path
                         python_path = sys.executable
 
                         # -- Create a subdirectory in the Yolo ROIs with current id name (for buffer, for yolo out) --
@@ -2255,41 +2261,46 @@ class Evaluator:
                         
                         # ***************************** END: FUSION MODEL - YOLO + GRABCUT FOR SEGMENTATION OPTIMIZING ***************************** 
 
-                        # -- Save our results as annotations --
+                        # -- Save our results as annotations -- 
+                        vehicle_cats = ['Car','Van','Truck','Tram','Bus'] # remove if not a type of vehicle --
                         with open(results_out, 'a') as results_out_file:
                             # loop all idxs and check which is stationary and which is moving
                             for count, label in enumerate(idx_all):
-                                # write frame id
-                                results_out_file.write(str(int(test_id*2)) + ' ')
 
-                                # write values
-                                for value in label:
-                                    results_out_file.write(value + ' ')
+                                current_cat = label[0]+':'
+                                if current_cat in vehicle_cats:
 
-                                # write neighbourhood status
-                                if count in out_of_lidar_bb_ids:
-                                    ool = 'Outside'
-                                else:
-                                    ool = 'Inside'
-                                results_out_file.write(ool + ' ')
+                                    # write frame id
+                                    results_out_file.write(str(int(test_id*2)) + ' ')
 
-                                # write ego status 
-                                results_out_file.write(ego_state + ' ')
+                                    # write values
+                                    for value in label:
+                                        results_out_file.write(value + ' ')
 
-                                # write motion status
-                                m_status = 's'
-                                if count in final_motion_picks:
-                                    m_status = 'm'
-                                results_out_file.write(m_status)
+                                    # write neighbourhood status
+                                    if count in out_of_lidar_bb_ids:
+                                        ool = 'Outside'
+                                    else:
+                                        ool = 'Inside'
+                                    results_out_file.write(ool + ' ')
 
-                                # new line
-                                results_out_file.write('\n')
+                                    # write ego status 
+                                    results_out_file.write(ego_state + ' ')
+
+                                    # write motion status
+                                    m_status = 's'
+                                    if count in final_motion_picks:
+                                        m_status = 'm'
+                                    results_out_file.write(m_status)
+
+                                    # new line
+                                    results_out_file.write('\n')
 
                         # -- Show predicted instances of moving vehicles --
                         add_mask = True # NOTE: set to false if you do not require the visualization of the masked region 
                         final_bbs = viz_predictions(add_mask, rgb_img, lidar_filter)
                         
-                        # -- label the instances for visualization --
+                        # -- Label the instances for visualization --
                         opt_final_motion_picks = []
                         for count, label in enumerate(idx_all):
                             if (count in final_motion_picks) and (count not in out_of_lidar_bb_ids):
@@ -2298,7 +2309,12 @@ class Evaluator:
                         logging.info(f'Final moving vehicle ids: {opt_final_motion_picks}')
                         cv2.imwrite('%s/motion_predictions/%06d_10.png' % (out_dir, test_id),final_bbs)
 
-            
+                        # -- Save corresponding scene flows of moving regions --
+                        flow_3d_dense_save = np.array(flow_3d_dense.reshape(input_h, input_w, 3))
+                        new_fusion_mask = np.array(new_fusion_mask)
+                        flow_3d_dense_save[new_fusion_mask==0] = -1
+                        np.save('%s/motion_flow_matrices/%06d_10.npy' % (out_dir, test_id), flow_3d_dense_save)
+
             c = c + 1
 
         # -- Close the file handler to flush the content to the file --
@@ -2306,12 +2322,12 @@ class Evaluator:
 
         # -- Destroy the temp folders --
         to_destroy = ['disp_0','disp_c','temp_RGB_roi','temp_YOLO_roi', 'temp_gc_x_roi','temp_gc_z_roi',
-                      'temp_x_fusion_roi', 'temp_z_fusion_roi', 'temp_t_fusion_roi','temp_fusion_roi',]
+                      'temp_x_fusion_roi', 'temp_z_fusion_roi', 'temp_t_fusion_roi','temp_fusion_roi',
+                      'mask_grabcut_x','mask_grabcut_z']
         for directory in to_destroy:
             dir_path = os.path.join(f'{out_dir}',directory)
             shutil.rmtree(dir_path)
-            
-            
+               
 if __name__ == '__main__':
 
     # -- Parse input arguments --
@@ -2328,7 +2344,7 @@ if __name__ == '__main__':
     import ruamel.yaml
     with open('conf/test/kitti.yaml', 'r') as file:
         config = ruamel.yaml.safe_load(file)
-    config['testset']['root_dir'] = '/scratch/work/jayawin1/article_3/camli_test/CamLiFlow/datasets/kitti_scene_flow_{}'.format(args.ds) #YOUR CODE:path to testset (download from provided data links)
+    config['testset']['root_dir'] = '$PATH_TO_DATASETS_DIRECTORY/datasets/kitti_scene_flow_{}'.format(args.ds) #YOUR CODE: change path to your dataset location (download from provided data links)
     with open('conf/test/kitti.yaml', 'w') as file:
         ruamel.yaml.dump(config, file)
 
