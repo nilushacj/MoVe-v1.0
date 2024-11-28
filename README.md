@@ -17,7 +17,7 @@ source activate moviflow
 ```
 
 3. Download required data
-The preprocessed data (originally from the KITTI Vision Benchmark Suite [1]) can be downloaded here (with folder name **datasets**): , along with calibration data: 
+The preprocessed data (adapted from the original source - KITTI Vision Benchmark Suite [1]) can be downloaded here (with folder name **datasets**): https://drive.google.com/drive/folders/1saPpuKvZ3Ism2Qvf-0ur6L2zDIwZxpt2?usp=sharing, along with calibration data: https://drive.google.com/drive/folders/163qsYUqGWXu06X2lp95JX_uJdm211_hJ?usp=sharing
 
 4. Update paths in the **move_predict.py** script
 All locations requiring path updates have been marked in the script with the prefix **YOUR CODE**
