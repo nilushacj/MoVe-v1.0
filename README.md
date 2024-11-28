@@ -1,6 +1,5 @@
-## Description
-**MoVe (Moving Vehicles)**
-This repository contains the code and supporting materials for MoVe (Motion of Vehicles), a model used for accurately identifying moving vehicles near an ego-vehicle in various driving scenarios. MoVe integrates scene-flow analysis with temporal tracking to enhance motion classification and segmentation using sensor-fused data. MoVe highlights the potential of combining spatial and temporal analyses for motion prediction. Its insights contribute to advancing autonomous driving applications, supporting the development of future machine vision models—such as those based on object-centric learning—to enhance perception, intent estimation, control strategies, and safety. Specific details of the model architecture will be made open source after publication
+## Description: MoVe (Moving Vehicles)
+This repository contains the code and supporting materials for MoVe (Motion of Vehicles), a model used for accurately **identifying moving vehicles near an ego-vehicle in various driving scenarios. MoVe integrates scene-flow analysis with temporal tracking to enhance motion classification and segmentation using sensor-fused data. MoVe highlights the potential of combining spatial and temporal analyses for motion prediction.** Its insights contribute to advancing autonomous driving applications, supporting the development of future machine vision models—such as those based on object-centric learning—to enhance perception, intent estimation, control strategies, and safety. Specific details of the model architecture will be made **open source after publication**.
 
 
 ## Installation
@@ -26,17 +25,17 @@ All locations requiring path updates have been marked in the script with the pre
 5. Run the model with the **predict_and_segment.sh** bash file
 We have structured and provided this as a job submission script (executed on Aalto Univeristy's high-performance computer cluster known as **Triton** [2]). Update lines 2-18, depending on your local execution environment.
 
-Line 21 contains python command for executive the **move_predict.py** script. Update the value for the **-- ds** argument with one of the following evaluation dataset ids:
-- 0002
-- 0006
-- 0007
-- 0008
-- 0010
-- 0013
-- 0014
-- 0018
+    Line 21 contains python command for executive the **move_predict.py** script. Update the value for the **-- ds** argument with one of the following evaluation dataset ids:
+    - 0002
+    - 0006
+    - 0007
+    - 0008
+    - 0010
+    - 0013
+    - 0014
+    - 0018
 
-After updating the file, we submit the job with:
+    After updating the file, we submit the job with:
 ```bash
 sbatch predict_and_segment.sh
 ```
