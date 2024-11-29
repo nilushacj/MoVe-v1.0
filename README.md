@@ -71,10 +71,32 @@ Each row corresponds to a single detection represented with 18 columns (left to 
 | 1      | prediction  | Motion prediction result (from MoVe): 's' = not moving, 'm' = moving.                                |
 
 
+## Acknowledgement
+This work uses data from the the KITTI Vision Benchmark Suite (http://www.cvlibs.net/datasets/kitti/) [1,2]. which is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License. We gratefully acknowledge the authors of KITTI for providing this dataset.
+
 
 ## References 
 [1] Paul Voigtlaender, Michael Krause, Aljosa Osep, Jonathon Luiten, Berin Balachandar Gnana Sekar, Andreas Geiger, & Bastian Leibe (2019). MOTS: Multi-Object Tracking and Segmentation. In Conference on Computer Vision and Pattern Recognition (CVPR).
 
+[2] Andreas Geiger, Philip Lenz, & Raquel Urtasun (2012). Are we ready for Autonomous Driving? The KITTI Vision Benchmark Suite. In Conference on Computer Vision and Pattern Recognition (CVPR).
+
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This repository contains multiple components with distinct licenses:
+
+1. **Code:**  
+   The source code in this repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+2. **Derived Data and Results:**  
+   The derived and preprocessed data (data links provided above in step 3), as well as the results derived from the KITTI dataset are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License (CC BY-NC-SA 3.0).  
+   - **Non-commercial use only:** This repository and its contents must not be used for commercial purposes.
+   - **Attribution:** If you use or modify the data/results in this repository, you must credit the KITTI dataset as follows:  
+     > This work uses data from the KITTI Vision Benchmark Suite ([http://www.cvlibs.net/datasets/kitti/](http://www.cvlibs.net/datasets/kitti/)), licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License.  
+   - **Share-alike:** Any modifications or derived data/results must be shared under the same license.
+
+For details about the KITTI dataset license, refer to: [http://www.cvlibs.net/datasets/kitti/](http://www.cvlibs.net/datasets/kitti/).
+
+
+
+
+
 
