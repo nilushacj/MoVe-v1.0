@@ -1,10 +1,8 @@
 ## Description: MoVe (Moving Vehicles)
 This repository contains the code and supporting materials for MoVe (Motion of Vehicles), a model used for accurately **identifying moving vehicles near an ego-vehicle in various driving scenarios. MoVe integrates scene-flow analysis with temporal tracking to enhance motion classification and segmentation using sensor-fused data. MoVe highlights the potential of combining spatial and temporal analyses for motion prediction.** Its insights contribute to advancing autonomous driving applications, supporting the development of future machine vision models—such as those based on object-centric learning—to enhance perception, intent estimation, control strategies, and safety. Specific details of the model architecture will be made **open source after publication**.
 
-## Video Demonstration
 
-[Click here to view the video](media/sample_result.mp4)
-
+[![Video Thumbnail](media/sample_result.png)](media/sample_result.mp4)
 
 ## Installation
 1. Clone the repository:
