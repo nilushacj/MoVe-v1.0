@@ -23,5 +23,5 @@ testset:
   n_workers: 6
   name: kitti
   root_dir: 
-    /scratch/work/jayawin1/article_3/camli_test/CamLiFlow/datasets/kitti_scene_flow_0010
+    $PATH_T0_DATASETS/datasets/kitti_scene_flow_0010 #YOUR CODE: update path to specific dataset
   split: testing200
