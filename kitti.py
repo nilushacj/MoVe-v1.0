@@ -5,17 +5,7 @@ import torch.utils.data
 from utils import disp2pc, project_pc2image, load_flow_png, load_disp_png, load_calib, zero_padding
 from augmentation import joint_augmentation
 
-"""
-    Note: Dataset quantities (i.e. no of frames)
-        0002: 233
-        0006: 270
-        0007: 800
-        0008: 390
-        0010: 294
-        0013: 340
-        0014: 106
-        0018: 339
-"""
+
 class KITTI(torch.utils.data.Dataset):
     def __init__(self, cfgs):
         assert os.path.isdir(cfgs.root_dir)
@@ -26,7 +16,7 @@ class KITTI(torch.utils.data.Dataset):
         self.cfgs = cfgs
 
         if self.split == 'training200':
-            self.indices = np.arange(int(np.floor(390/2))) #YOUR CODE: Change value depending on the dataset (refer to lines 9-17)
+            self.indices = np.arange(int(np.floor(390/2))) 
         elif self.split == 'training160':
             self.indices = [i for i in range(160) if i % 5 != 0]
         elif self.split == 'training40':
