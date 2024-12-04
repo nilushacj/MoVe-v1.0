@@ -2069,6 +2069,7 @@ class Evaluator:
 
                                 seg_class_flag = False
                                 lbl_path = yolo_pred_dir+'/exp/labels'
+                                sum_yolo_mask = 0
                                 # -- Transfer and save labels file --                                
                                 if len(os.listdir(lbl_path))!=0:
                                     yolo_labels_src = glob.glob(lbl_path+'/*.txt')[0] 
