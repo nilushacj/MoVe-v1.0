@@ -20,8 +20,7 @@ source activate moviflow
 3. Download required data
 The preprocessed data (adapted from the original source - KITTI Vision Benchmark Suite [1]) can be downloaded here (with folder name **datasets**): https://drive.google.com/drive/folders/1saPpuKvZ3Ism2Qvf-0ur6L2zDIwZxpt2?usp=sharing, along with calibration data: https://drive.google.com/drive/folders/163qsYUqGWXu06X2lp95JX_uJdm211_hJ?usp=sharing
 
-4. Update paths in the **move_predict.py** script
-All locations requiring path updates have been marked in the script with the prefix **YOUR CODE**
+4. Update paths in the **move_predict.py** and the **conf/kitti.yaml** scripts, as well as the dataset quantity in **kitti.py**. All locations requiring updates have been marked in the script with the prefix **YOUR CODE**
 
 5. Run the model with the **predict_and_segment.sh** bash file
 We have structured and provided this as a job submission script (executed on Aalto Univeristy's high-performance computer cluster known as **Triton** [2]). Update lines 2-18, depending on your local execution environment.
