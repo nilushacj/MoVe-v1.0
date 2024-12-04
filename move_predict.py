@@ -939,7 +939,7 @@ class Evaluator:
                         # -- Map point cloud coordinates to left camera frame --
                         depth_limit = int(self.move_params['ego_car']['depth_cloud_img'])
                         cloud_img = pointcloud_to_image(ptcloud, input_w, input_h, 
-                                                        tr, P0, depth_limit, labels_file)
+                                                        tr, P0, depth_limit)
 
                         # -- Get calibration matrices for tracks --
                         with open(calib_cam_cam,'r') as f1:
