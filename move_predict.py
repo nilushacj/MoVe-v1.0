@@ -192,7 +192,7 @@ def read_calib_to_csv(calib_file, delimiter):
     data_csv = pd.read_csv(calib_file, delimiter=delimiter, header=None, index_col=0, names=cols)
     return data_csv
 
-def pointcloud_to_image(ptcloud, imwidth, imheight, tr, P0, max_depth, labels_file):
+def pointcloud_to_image(ptcloud, imwidth, imheight, tr, P0, max_depth):
     """
     Maps the point cloud to the left camera frame
     Args:
@@ -253,13 +253,6 @@ def pointcloud_to_image(ptcloud, imwidth, imheight, tr, P0, max_depth, labels_fi
 
     # -- Fill in 0 values with large dist so that they will be ignored --
     cloud_img[cloud_img == 0.0] = max_depth 
-
-    # -- Load the regions for overlaps checking --
-    bboxes = []
-    labels = csv.reader(open(labels_file), delimiter=" ")
-    for label in labels:
-        # -- Select ROI i.e. region within bounding box --
-        bboxes.append([int(float(label[1])), int(float(label[2])), int(float(label[3])), int(float(label[4]))])
 
     return cloud_img
 
